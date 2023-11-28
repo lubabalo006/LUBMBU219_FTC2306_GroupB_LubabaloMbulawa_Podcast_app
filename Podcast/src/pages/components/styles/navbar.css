@@ -1,0 +1,19 @@
+/* GENERAL ---------------  THEME*/
+
+
+
+
+/* App.css */
+.light-mode {
+    /* Light mode styles */
+    position:sticky;
+  }
+  
+  .dark-mode {
+    background-color: rgb(7, 7, 12);
+    color: #fff;
+    position:sticky;
+  }
+  .theme {
+    position: sticky;
+  }
