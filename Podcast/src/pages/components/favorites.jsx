@@ -64,6 +64,8 @@ return (
     <div>
 
         <h3>Favorite Shows</h3>
+        <div className="carousel">
+
         <div>
             <label htmlFor="sort">Sort by title: </label>
             <select id="sort" onChange={handleSortChange}>
@@ -94,6 +96,7 @@ return (
             </div>
             </div>
           ))}
+        </div>
         </div>
 
     </div>

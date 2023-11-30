@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import FavoriteShows from "./favorites"
 import "./styles/shows.css"
+import "./styles/loader.css"
 
 
 const MainShows = () => {
@@ -62,7 +63,7 @@ const toggleFavorite = (showId) => {
   };
 
     return(
-        <div>
+        <div >
 
 
             <div>

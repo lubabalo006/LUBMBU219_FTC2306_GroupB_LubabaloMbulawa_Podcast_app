@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '/src/client';
 
 const SignUp = () => {
@@ -49,36 +49,121 @@ const SignUp = () => {
 
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input 
-          placeholder='Fullname'
-          name='fullName'
-          onChange={handleChange}
-        />
+<div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-title">
+          <span>Sign up for your</span>
+        </div>
+        <div className="title-2">
+          <span>SPACE</span>
+        </div>
 
-        <input 
-          placeholder='Email'
-          name='email'
-          onChange={handleChange}
-        />
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="email"
+            placeholder="Fullname"
+            name="fullname"
+            value={formData.fullName}
+            onChange={handleChange}
+          />
+        </div>
 
-        <input 
-          placeholder='Password'
-          name='password'
-          type="password"
-          onChange={handleChange}
-        />
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
 
-        <button type='submit'>
-          Submit
+        <section className="bg-stars">
+          {}
+        </section>
+
+        <div className="input-container">
+          <input
+            className="input-pwd"
+            type="password"
+            placeholder="Enter password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" className="submit">
+          <span className="sign-text">Sign Up</span>
         </button>
 
-
+        <p className="signup-link">
+        Have an account? <Link to='/login'>Login</Link>
+        </p>
       </form>
-      Already have an account?<Link to='/'>Login</Link> 
     </div>
   )
 }
 
 export default SignUp
+/*
+<div>
+      <form className="form" onSubmit={handleSubmit}>
+        <div className="form-title">
+          <span>Sign up for your</span>
+        </div>
+        <div className="title-2">
+          <span>SPACE</span>
+        </div>
+
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="email"
+            placeholder="Fullname"
+            name="fullname"
+            value={formData.fullName}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="input-container">
+          <input
+            className="input-mail"
+            type="email"
+            placeholder="Enter email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+        </div>
+
+        <section className="bg-stars">
+          {}
+        </section>
+
+        <div className="input-container">
+          <input
+            className="input-pwd"
+            type="password"
+            placeholder="Enter password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit" className="submit">
+          <span className="sign-text">Sign Up</span>
+        </button>
+
+        <p className="signup-link">
+          No account?
+          <a href="#" className="up">
+            Sign up!
+          </a>
+        </p>
+      </form>
+    </div>
+    
+*/
