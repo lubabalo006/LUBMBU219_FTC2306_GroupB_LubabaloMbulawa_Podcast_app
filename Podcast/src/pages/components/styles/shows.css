@@ -37,3 +37,58 @@ img{
     overflow: hidden;
     overflow-x: scroll;
   }
+
+  .close {
+  
+    border-radius: 10px;
+    background-color: red;
+  }
+
+
+  /* <reset-style> ============================ */
+a {
+    text-decoration: none;
+  }
+  /* <main-style> ============================ */
+  .scroll-up {
+    position: sticky; 
+    bottom: 0px;
+    right: 3rem;
+    bottom: -50%;
+    z-index: 10;
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: rgba(29, 29, 31, 0.7);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: bottom 3s, transform .4s;
+  }
+  
+  .scroll-up:hover {
+    transform: translateY(-.25rem);
+  }
+  
+  /* Show scroll-up */
+  ._show-scroll {
+    bottom: 3rem;
+  }
+  
+  @media (max-width: 1199.98px) {
+    .scroll-up {
+      right: 1rem;
+    }
+  }
+
+ 
+  h3 {
+    margin: 20px;
+  }
+
+  .modal{
+    background: #252525;
+  }

@@ -55,7 +55,7 @@ const SignUp = () => {
           <span>Sign up for your</span>
         </div>
         <div className="title-2">
-          <span>SPACE</span>
+          <span>SPACE-APP</span>
         </div>
 
         <div className="input-container">
@@ -107,63 +107,3 @@ const SignUp = () => {
 }
 
 export default SignUp
-/*
-<div>
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="form-title">
-          <span>Sign up for your</span>
-        </div>
-        <div className="title-2">
-          <span>SPACE</span>
-        </div>
-
-        <div className="input-container">
-          <input
-            className="input-mail"
-            type="email"
-            placeholder="Fullname"
-            name="fullname"
-            value={formData.fullName}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="input-container">
-          <input
-            className="input-mail"
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-
-        <section className="bg-stars">
-          {}
-        </section>
-
-        <div className="input-container">
-          <input
-            className="input-pwd"
-            type="password"
-            placeholder="Enter password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-        <button type="submit" className="submit">
-          <span className="sign-text">Sign Up</span>
-        </button>
-
-        <p className="signup-link">
-          No account?
-          <a href="#" className="up">
-            Sign up!
-          </a>
-        </p>
-      </form>
-    </div>
-    
-*/

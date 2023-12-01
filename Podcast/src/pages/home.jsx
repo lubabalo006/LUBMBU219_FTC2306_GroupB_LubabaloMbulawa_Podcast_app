@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom'
 import Main from "/src/pages/components/main"
+import LandingPageCarousel from "/src/pages/components/random"
 import "./components/styles/navbar.css"
 import "./components/styles/logout.css"
 import "./components/styles/theme.css"
@@ -9,7 +10,13 @@ import "./components/styles/theme.css"
 
 
 
+
 const Homepage = ({token}) => {
+
+    const [searchTerm, setSearchTerm] = useState(""); // State to hold the search term
+    const [filteredShows, setFilteredShows] = useState([]);
+
+
   let navigate = useNavigate()
   
   function handleLogout(){
@@ -23,21 +30,39 @@ const Homepage = ({token}) => {
   const toggleDarkMode = () => {
     setDarkMode(prevDarkMode => !prevDarkMode); // Toggle the dark mode state
   };
+  
 
 
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
         <div className="theme">
+
+        <div className="title-2">
+          <span>SPACE-APP</span>
+        </div>
+
+
+        <div>
+            <a id="scroll-up" className="scroll-up" href="#">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0h24v24H0z" fill="none"></path>
+                    <path fill="rgba(255,255,255,1)" d="M11.9997 10.8284L7.04996 15.7782L5.63574 14.364L11.9997 8L18.3637 14.364L16.9495 15.7782L11.9997 10.8284Z">
+                    </path>
+                </svg>
+            </a>
+            </div>
+        
+        
             <div class="theme-switch">
                 <input type="checkbox" id="theme-checkbox" onChange={toggleDarkMode} checked={darkMode}/>
-                <label for="theme-checkbox">
+                <label htmlFor="theme-checkbox">
                     <div></div>
                     <span>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        class="w-6 h-6"
+                        className="w-6 h-6"
                     >
                         <path
                         fill-rule="evenodd"
@@ -51,7 +76,7 @@ const Homepage = ({token}) => {
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
                         fill="currentColor"
-                        class="w-6 h-6"
+                        className="w-6 h-6"
                     >
                         <path
                         d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"
@@ -84,6 +109,8 @@ const Homepage = ({token}) => {
                 </button> 
 
             </div>
+
+            <h3><LandingPageCarousel/></h3>
 
             <h3><Main darkMode={darkMode} /> {token.user.user_metadata.full_name}</h3>
         

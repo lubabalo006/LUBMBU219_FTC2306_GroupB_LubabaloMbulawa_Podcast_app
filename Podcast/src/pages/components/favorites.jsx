@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./styles/shows.css"
 import MainShows from "./shows"
+import { Link } from 'react-router-dom';
 
 const FavoriteShows = () => {
     const [shows, setShows] = useState([]);
     const [favorites, setFavorites] = useState([]);
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
     const [sortOrder, setSortOrder] = useState('asc');
-
 
     useEffect(() => {
         async function fullShowsPreview() {
@@ -27,18 +27,26 @@ const FavoriteShows = () => {
       }, []);
 
 
-      // Function to add/remove a show from favorites
-    const toggleFavorite = (showId) => {
+      const toggleFavorite = async (showId) => {
         const isFavorite = favorites.some((fav) => fav.id === showId);
+    
         if (isFavorite) {
-        const updatedFavorites = favorites.filter((fav) => fav.id !== showId);
-        setFavorites(updatedFavorites);
-        } else {
-        const selectedShow = shows.find((show) => show.id === showId);
-        if (selectedShow) {
-            const updatedFavorites = [...favorites, selectedShow];
+            // Remove from favorites in Supabase
+            await supabase
+                .from('favorite_shows')
+                .delete()
+                .eq('id', showId);
+    
+            const updatedFavorites = favorites.filter((fav) => fav.id !== showId);
             setFavorites(updatedFavorites);
-        }
+        } else {
+            // Add to favorites in Supabase
+            const selectedShow = shows.find((show) => show.id === showId);
+            if (selectedShow) {
+                await supabase.from('favorite_shows').insert([selectedShow]);
+                const updatedFavorites = [...favorites, selectedShow];
+                setFavorites(updatedFavorites);
+            }
         }
     };
 
@@ -60,47 +68,43 @@ const FavoriteShows = () => {
       };
 
 
-return (
-    <div>
-
-        <h3>Favorite Shows</h3>
-        <div className="carousel">
-
+      return (
         <div>
-            <label htmlFor="sort">Sort by title: </label>
-            <select id="sort" onChange={handleSortChange}>
-                <option value="asc">A-Z</option>
-                <option value="desc">Z-A</option>
-            </select>
-        </div>
+            <h3>Favorite Shows</h3>
+            <div className="carousel">
+                <div>
+                    <label htmlFor="sort">Sort by title: </label>
+                    <select id="sort" onChange={handleSortChange}>
+                        <option value="asc">A-Z</option>
+                        <option value="desc">Z-A</option>
+                    </select>
+                </div>
 
-    
-        <div className="card">
-          {favorites.map((favShow) => (
-            <div className="card--info" key={favShow.id}>
-              <img src={favShow.image} alt={favShow.title} className="card--image" />
-              <p className="title">{favShow.title}</p>
-              <div>
-                <h2>Seasons: {show.seasons.length}</h2>
-                <button onClick={() => toggleFavorite(show.id)}>
-                  {favorites.some((fav) => fav.id === show.id) ? 'Remove from Favorites' : 'Add to Favorites'}
-                </button>
-                <select onChange={(e) => setShowSeasons(prevState => ({ ...prevState, [show.id]: e.target.value }))}>
-                <option value="">Select a season</option>
-                {show.seasons.map((season, seasonIndex) => (
-                    <option key={`${show.id}-${seasonIndex}`} value={seasonIndex}>
-                    Season {seasonIndex + 1}
-                    </option>
-                ))}
-                </select>
+                <div className="card">
+                    {favorites.map((favShow) => (
+                        <div className="card--info" key={favShow.id}>
+                            <img src={favShow.image} alt={favShow.title} className="card--image" />
+                            <p className="title">{favShow.title}</p>
+                            <div>
+                                <h2>Seasons: {favShow.seasons.length}</h2>
+                                <button onClick={() => toggleFavorite(favShow.id)}>
+                                    {favorites.some((fav) => fav.id === favShow.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+                                </button>
+                                <select onChange={(e) => setShowSeasons(prevState => ({ ...prevState, [favShow.id]: e.target.value }))}>
+                                    <option value="">Select a season</option>
+                                    {favShow.seasons.map((season, seasonIndex) => (
+                                        <option key={`${favShow.id}-${seasonIndex}`} value={seasonIndex}>
+                                            Season {seasonIndex + 1}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            </div>
-          ))}
         </div>
-        </div>
-
-    </div>
-)
+    );
 }
 
-export default FavoriteShows
+export default FavoriteShows;

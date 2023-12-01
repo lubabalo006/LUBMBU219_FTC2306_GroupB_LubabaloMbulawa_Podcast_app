@@ -38,44 +38,11 @@ const Login = ({setToken}) => {
       navigate('/homepage')
 
 
-    //   alert('Check your email for verification link')
-
       
     } catch (error) {
       alert(error)
     }
   }
-
-
-//   <form class="form" onSubmit={handleSubmit}>
-//   <div class="form-title"><span>sign in to your</span></div>
-//    <div class="title-2"><span>SPACE</span></div>
-//    <div class="input-container">
-//      <input class="input-mail" type="email" placeholder="Enter email" onChange={handleChange}>
-//      <span> </span>
-//    </div>
-
-//    <section class="bg-stars">
-//      <span class="star"></span>
-//      <span class="star"></span>
-//      <span class="star"></span>
-//      <span class="star"></span>
-//    </section>
-
-//    <div class="input-container">
-//      <input class="input-pwd" type="password" placeholder="Enter password" onChange={handleChange}>
-//    </div>
-//    <button type="submit" class="submit">
-//      <span class="sign-text">Sign in</span>
-//    </button>
-
-//    <p class="signup-link">
-//      No account?
-//      <a href="" class="up">Sign up!</a>
-//    </p>
-    
-// </form>
-
 
 
 return (
@@ -85,7 +52,7 @@ return (
           <span>Sign in to your</span>
         </div>
         <div className="title-2">
-          <span>SPACE</span>
+          <span>SPACE-APP</span>
         </div>
         <div className="input-container">
           <input
@@ -125,29 +92,3 @@ return (
 };
 
 export default Login
-
-/*<div>
-      <form onSubmit={handleSubmit}>
-        
-
-        <input 
-          placeholder='Email'
-          name='email'
-          onChange={handleChange}
-        />
-
-        <input 
-          placeholder='Password'
-          name='password'
-          type="password"
-          onChange={handleChange}
-        />
-
-        <button type='submit'>
-          Submit
-        </button>
-
-
-      </form>
-      Don't have an account? <Link to='/signup'>Sign Up</Link> 
-    </div>*/
